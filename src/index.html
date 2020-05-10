@@ -20,6 +20,61 @@
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
+    <div class="container py-5">
+      <h1 class="display-4 text-center">Save your Contacts</h1>
+
+      <div class="row my-5">
+        <div class="col">
+          <input
+            type="text"
+            placeholder="Enter name"
+            class="form-control"
+            id="nameField"
+          />
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            placeholder="Enter number"
+            class="form-control"
+            id="numberField"
+          />
+        </div>
+        <div class="col">
+          <input
+            type="email"
+            placeholder="Enter email"
+            class="form-control"
+            id="nameField"
+          />
+        </div>
+        <div class="col">
+          <button class="btn btn-primary">Save Contact</button>
+        </div>
+      </div>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>
+              <button class="btn btn-warning">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
