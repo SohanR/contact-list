@@ -5,6 +5,8 @@ const base_url = "http://localhost:3000/contacts";
 window.onload = function () {
   let tbody = this.document.querySelector("#tbody");
 
+  //get data from server
+
   axios
     .get(base_url)
     .then((res) => {
@@ -13,6 +15,14 @@ window.onload = function () {
       });
     })
     .catch();
+
+  // add data
+
+  let saveContactBtb = this.document.querySelector("#saveContact");
+
+  saveContactBtb.addEventListener("click", () => {
+    createNewContact();
+  });
 };
 
 //create tr element
@@ -43,7 +53,7 @@ function createTDElement(contacts, parentElement) {
   TdActions.appendChild(tdEditbtn);
 
   const tdDeletebtn = document.createElement("button");
-  tdDeletebtn.className = "btn btn-danger";
+  tdDeletebtn.className = "btn btn-danger  mx-1";
   tdDeletebtn.innerHTML = "Delete";
   tdDeletebtn.addEventListener("click", () => {
     console.log("i am Delete");
@@ -53,4 +63,29 @@ function createTDElement(contacts, parentElement) {
   TR.appendChild(TdActions);
 
   parentElement.appendChild(TR);
+}
+
+//create new contact function
+
+function createNewContact() {
+  let nameField = document.querySelector("#nameField");
+  let numberField = document.querySelector("#numberField");
+  let emailField = document.querySelector("#emailField");
+
+  axios
+    .post(base_url, {
+      name: nameField.value,
+      phone: numberField.value,
+      email: emailField.value,
+    })
+    .then((res) => {
+      let tbody = document.querySelector("#tbody");
+
+      createTDElement(res.data, tbody);
+
+      nameField.value = "";
+      numberField.value = "";
+      emailField.value = "";
+    })
+    .catch();
 }
