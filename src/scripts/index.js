@@ -1,6 +1,19 @@
-import axios from "axios";
+import * as axios from "axios";
 
 const base_url = "http://localhost:3000/contacts";
+
+window.onload = function () {
+  let tbody = this.document.querySelector("#tbody");
+
+  axios
+    .get(base_url)
+    .then((res) => {
+      res.data.forEach((contacts) => {
+        createTDElement(contacts, tbody);
+      });
+    })
+    .catch();
+};
 
 //create tr element
 
