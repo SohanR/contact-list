@@ -48,7 +48,35 @@ function createTDElement(contacts, parentElement) {
   tdEditbtn.className = "btn btn-warning";
   tdEditbtn.innerHTML = "Edit";
   tdEditbtn.addEventListener("click", () => {
-    console.log("i am Edit btn");
+    //Edit modal
+    let mainModal = $("#ContactEditModal");
+    mainModal.modal("toggle");
+
+    let editName = document.querySelector("#Edit-name");
+    let editPhone = document.querySelector("#Edit-phone");
+    let editEmail = document.querySelector("#Edit-email");
+
+    editName.value = contacts.name;
+    editPhone.value = contacts.phone ? contacts.phone : "";
+    editEmail.value = contacts.email ? contacts.email : "";
+
+    let updateBtn = document.querySelector("#updateContact");
+    updateBtn.addEventListener("click", function () {
+      axios
+        .put(`${base_url}/${contacts.id}`, {
+          name: editName.value,
+          phone: editPhone.value,
+          email: editEmail.value,
+        })
+        .then((res) => {
+          TdName.innerHTML = res.data.name;
+          TdPhone.innerHTML = res.data.phone;
+          TdEmail.innerHTML = res.data.email;
+
+          mainModal.modal("hide");
+        })
+        .catch((err) => console.log(err));
+    });
   });
   TdActions.appendChild(tdEditbtn);
 
