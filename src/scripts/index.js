@@ -56,7 +56,16 @@ function createTDElement(contacts, parentElement) {
   tdDeletebtn.className = "btn btn-danger  mx-1";
   tdDeletebtn.innerHTML = "Delete";
   tdDeletebtn.addEventListener("click", () => {
-    console.log("i am Delete");
+    //deleting objects
+
+    axios
+      .delete(`${base_url}/${contacts.id}`)
+      .then((res) => {
+        parentElement.removeChild(TR);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
   TdActions.appendChild(tdDeletebtn);
 
