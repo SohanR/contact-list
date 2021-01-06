@@ -4,7 +4,7 @@
   "description": "dom and ajax mini project",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "webpack": "^4.43.0",
